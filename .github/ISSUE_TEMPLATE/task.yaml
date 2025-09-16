@@ -1,0 +1,12 @@
+name: Task
+description: A specific piece of work that builds towards a feature.
+title: "[Task]: "
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: The details of what the task entails.
+      placeholder: Descrption of the Task and list of all the features, chores, etc. That involves completing this task.
+    validations:
+      required: true

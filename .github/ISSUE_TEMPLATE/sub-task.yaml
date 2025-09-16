@@ -1,0 +1,12 @@
+name: Sub-Task
+description: A highly specific piece of work that builds towards a task.
+title: "[Sub-Task]: "
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: The details for the sub-task to build-up to the completion of it's task.
+      placeholder: Description of the subtask and it's to-do list
+    validations:
+      required: true
