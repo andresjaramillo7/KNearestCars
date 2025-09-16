@@ -1,6 +1,6 @@
 # KNearestCars
 
-Final submission for the Advanced Artificial Intelligence II / Data analytics and artificial intelligence tools course.
+Final submission for the Advanced Artificial Intelligence for data science I / Data analytics and artificial intelligence tools course.
 
 - Andrés Jaramillo Barón - A01029079
 - Pedro Mauri Mtz - A01029143
