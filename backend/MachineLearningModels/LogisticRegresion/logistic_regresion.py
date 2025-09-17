@@ -6,27 +6,39 @@ Ricardo Calvo Pérez - A01028889
 Algoritmo Regresión Logística
 """
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 def main_logistic(training, trainingLabels, test, testLabels):
 
-    # Apply the logistic regression approach over test samples using training data on scikit-learn
-    print("Apply the logistic regression approach over test samples on scikit-learn")
+    print("--- Aplicando Regresión Logística usando scikit-learn ---")
 
-    # Create the logistic regression classifier
+    # Crear clasificador de Regresión Logística
     logistic = LogisticRegression()
 
-    # Fit the model to the training data
+    # Entrenar modelo con data y etiquetas de entrenamiento
+    print("Entrenando Regresión Logística...")
     logistic.fit(training, trainingLabels)
-
-    # Make predictions on the test data
+    # Poner a prueba el modelo con test data y guardar las predicciones
+    print("Probando Regresión Logística...")
     predictions = logistic.predict(test)
 
-    # Print each prediction with the real label
-    print("Predictions vs. True Labels:")
-    for i in range(len(predictions)):
-        print("Predicted: " + str(predictions[i]) + " Real Value: " + testLabels[i])
+    # Print comparación entre predicción y etiqueta real
+    # print("Predictions vs. True Labels:")
+    # for i in range(len(predictions)):
+    #     print(f"Predicted: {str(predictions[i])} Real Value: {testLabels[i]}")
 
-    # Evaluate the model's performance
+    # Definir etiqueta 'positiva' - Asumiendo que 'Present\r' es la clase 'positiva'
+    positive_label = 'Present\r'
+
+    # Evaluar 'Accuracy' del modelo
     accuracy = accuracy_score(testLabels, predictions)
-    print("Model accuracy:", accuracy)
+    precision = precision_score(testLabels, predictions, pos_label = positive_label)
+    recall = recall_score(testLabels, predictions, pos_label = positive_label)
+    f1 = f1_score(testLabels, predictions, pos_label = positive_label)
+    
+    # Printear metricas
+    print("--- Métricas de la Regresión Logística ---")
+    print(f"Model accuracy: {accuracy}")
+    print(f"Model precision: {precision}")
+    print(f"Model recall: {recall}")
+    print(f"Model F1 score: {f1}")
