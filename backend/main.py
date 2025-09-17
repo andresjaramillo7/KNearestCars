@@ -10,7 +10,7 @@ from MachineLearningModels.KNN.knn import main_knn
 from MachineLearningModels.LogisticRegresion.logistic_regresion import main_logistic
 from MachineLearningModels.NaiveBayes.naive_bayes import main_naive_bayes
 
-from Data.data_preparation import training, trainingLabels, test, testLabels
+from Data.data_preparation import load_dataset
 
 print("\n============================== KNN ==============================")
 # Llamar modelo KNN

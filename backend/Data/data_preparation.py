@@ -6,14 +6,15 @@ Ricardo Calvo Pérez - A01028889
 Preparación del data-set
 """
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
-def load_dataset():
+def load_dataset(path):
     # Leer CSV
-    df_raw = pd.read_csv("WinLoseDataset.csv")
+    df_raw = pd.read_csv(path)
     df = df_raw.iloc[:, 1:].copy()
     df.columns = df.columns.str.strip()
 
-    # Mapear horas
+    # Mapear horas (ordinal)
     MAP_HORAS = {
         "0 - 1 horas": 0,
         "1 - 2 horas": 1,
@@ -21,51 +22,27 @@ def load_dataset():
         "3 - 4 horas": 3,
         "4 - 5 + horas": 4
     }
-    
+
     df["Horas jugadas antes de la partida"] = df["Horas jugadas antes de la partida"].map(MAP_HORAS)
 
+    # Agrupar clases con menos datos en "Otros"
     df["Tipo de juego"] = df["Tipo de juego"].replace({
-    "Shooter": "Otros",
-    "Estrategia": "Otros",
-    "Deportes": "Otros",
-})
+        "Shooter": "Otros",
+        "Estrategia": "Otros",
+        "Deportes": "Otros",
+    })
 
     # One-hot encoding
     cat_cols = ["Hora del día en que jugaste", "Tipo de juego", "Jugaste con amigos o solo"]
     df = pd.get_dummies(df, columns=cat_cols, drop_first=False)
 
-    # Separar target y features
+    # 'y' y 'X'
     y = df["Ganaste o Perdiste la partida"].map({"Gané": 1, "Perdí": 0}).astype(int)
     X = df.drop(columns=["Ganaste o Perdiste la partida"])
 
-    return X, y
+    # Split 80/20
+    training, test, trainingLabels, testLabels = train_test_split(
+        X, y, test_size=0.20, stratify=y, random_state=42
+    )
 
- 
-
-
-
-"""
-TESTING MODULES DATA:
-"""
-import codecs
-
-# Load training and test data from dataset files
-training = []
-trainingLabels = []
-test = []
-testLabels = []
-
-print("Load training samples")
-with codecs.open("Data/training.txt", "r", "UTF-8") as file:
-    for line in file:
-        elements=(line.rstrip('\n')).split(",")
-        training.append([float(elements[0]),float(elements[1])])
-        trainingLabels.append(elements[2])
-
-print("Load test samples")
-with codecs.open("Data/test.txt", "r", "UTF-8") as file:
-    for line in file:
-        elements=(line.rstrip('\n')).split(",")
-        test.append([float(elements[0]),float(elements[1])])
-        testLabels.append(elements[2])
-
+    return training, trainingLabels, test, testLabels
