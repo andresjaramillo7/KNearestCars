@@ -1,0 +1,138 @@
+:root {
+  --brand: #7c3aed;
+  --ink: #e2e8f0;
+  --muted: #94a3b8;
+  --card: #0f172a;
+  --border: #1f2a44;
+  --hover: #13203a;
+  --ring: rgba(124, 58, 237, .35);
+  --bg: radial-gradient(1200px 600px at 10% 0%, #0b1226 0, #0a0f1f 45%, #050814 100%);
+}
+
+* {
+  box-sizing: border-box
+}
+
+html,
+body,
+#root {
+  height: 100%
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
+  color: var(--ink);
+}
+
+.shell {
+  min-height: 100%;
+  padding: 32px 16px;
+  display: grid;
+  place-items: start center;
+}
+
+.form {
+  width: min(1080px, 100%);
+  display: grid;
+  gap: 16px
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .5)
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  gap: 12px
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700
+}
+
+
+.field {
+  display: grid;
+  gap: 12px
+}
+
+.legend {
+  font-weight: 600
+}
+
+.options {
+  display: grid;
+  gap: 10px
+}
+
+.options.columns-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+
+.options.columns-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr))
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #0c1730;
+  transition: background .2s, border-color .2s, transform .05s
+}
+
+.option:hover {
+  background: var(--hover);
+  border-color: #2b3b66
+}
+
+input[type="radio"] {
+  accent-color: var(--brand)
+}
+
+.option input[type="radio"]:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding-top: 8px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.btn {
+  appearance: none;
+  min-width: 10rem;
+  border: 1px solid #2b385e;
+  background: #0c1730;
+  color: var(--ink);
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer
+}
+
+.btn.primary {
+  background: var(--brand);
+  border-color: transparent;
+  color: white
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px
+}
