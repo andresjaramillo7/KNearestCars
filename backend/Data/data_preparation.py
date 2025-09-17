@@ -39,3 +39,33 @@ def load_dataset():
     X = df.drop(columns=["Ganaste o Perdiste la partida"])
 
     return X, y
+
+ 
+
+
+
+"""
+TESTING MODULES DATA:
+"""
+import codecs
+
+# Load training and test data from dataset files
+training = []
+trainingLabels = []
+test = []
+testLabels = []
+
+print("Load training samples")
+with codecs.open("Data/training.txt", "r", "UTF-8") as file:
+    for line in file:
+        elements=(line.rstrip('\n')).split(",")
+        training.append([float(elements[0]),float(elements[1])])
+        trainingLabels.append(elements[2])
+
+print("Load test samples")
+with codecs.open("Data/test.txt", "r", "UTF-8") as file:
+    for line in file:
+        elements=(line.rstrip('\n')).split(",")
+        test.append([float(elements[0]),float(elements[1])])
+        testLabels.append(elements[2])
+
