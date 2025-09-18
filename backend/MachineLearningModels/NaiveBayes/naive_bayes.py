@@ -5,11 +5,12 @@ Ricardo Calvo Pérez - A01028889
 
 Naive Bayes Algorithm
 """
+import joblib
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 from sklearn.model_selection import KFold, cross_validate
 
-def main_naive_bayes(training, trainingLabels, test, testLabels):
+def main_naive_bayes(training, trainingLabels, test, testLabels, save = None):
 
     print("--- Applying Naive Bayes using scikit-learn ---")
 
@@ -44,3 +45,9 @@ def main_naive_bayes(training, trainingLabels, test, testLabels):
     print(f"Model recall: {recall}")
     print(f"Model F1 score: {f1}")
     print(f"Model ROC / AUC: {roc_auc}")
+
+    if save:
+            joblib.dump(naive_bayes, save)
+            print(f"Model saved to {save}")
+
+    return naive_bayes
