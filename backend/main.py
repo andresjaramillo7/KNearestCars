@@ -21,7 +21,9 @@ main_knn(training, trainingLabels, test, testLabels, k, dist_func)
 
 print("\n============================== Regresión Logística ==============================")
 # Llamar modelo Regresión Logística
-main_logistic(training, trainingLabels, test, testLabels)
+p = 'l2'
+lambda_ = 1
+main_logistic(training, trainingLabels, test, testLabels, p, lambda_)
 
 print("\n============================== Naive Bayes ==============================")
 # Llamar modelo Naive Bayes
