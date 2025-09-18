@@ -3,7 +3,7 @@ Andrés Jaramillo Barón - A01029079
 Pedro Mauri Mtz - A01029143
 Ricardo Calvo Pérez - A01028889
 
-Algoritmo KNN
+KNN (K Nearest Neighbors) Algorithm
 """
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
@@ -11,33 +11,33 @@ from sklearn.model_selection import KFold, cross_validate
 
 def main_knn(training, trainingLabels, test, testLabels, k, dist_func):
 
-    print("--- Aplicando KNN usando scikit-learn ---")
+    print("--- Applying KNN using scikit-learn ---")
 
-    # Crear el clasificador KNN con k
+    # Create KNN classifier with k and distance function
     knn = KNeighborsClassifier(n_neighbors = k, metric = dist_func)
 
-    # Entrenar modelo con data y etiquetas de entrenamiento
-    print("Entrenando KNN...")
+    # Train model with training data and labels
+    print("Training KNN...")
     knn.fit(training, trainingLabels)
-    # Poner a prueba el modelo con test data y guardar las predicciones
-    print("Probando KNN...")
+    # Test the model with test data and save predictions
+    print("Testing KNN...")
     predictions = knn.predict(test)
 
-    # Print comparación entre predicción y etiqueta real
+    # Print comparation beetween predictions and true labels
     # print("Predictions vs. True Labels:")
     # for i in range(len(predictions)):
     #     print(f"Predicted: {str(predictions[i])} Real Value: {testLabels[i]}")
 
-    # Definir etiqueta 'positiva' - Asumiendo que 'Gané\r' es la clase 'positiva'
+    # Define 'positive' label
     positive_label = 1
-    # Evaluar métricas de rendimiento del modelo
+    # Evaluate model performance metrics
     accuracy = accuracy_score(testLabels, predictions)
     precision = precision_score(testLabels, predictions, pos_label = positive_label)
     recall = recall_score(testLabels, predictions, pos_label = positive_label)
     f1 = f1_score(testLabels, predictions, pos_label = positive_label)
-   
-    # Printear metricas
-    print(f"--- Métricas de KNN (k = {k}) ---")
+
+    # Print metrics
+    print(f"--- KNN (k = {k}) Metrics ---")
     print(f"Model accuracy: {accuracy}")
     print(f"Model precision: {precision}")
     print(f"Model recall: {recall}")
