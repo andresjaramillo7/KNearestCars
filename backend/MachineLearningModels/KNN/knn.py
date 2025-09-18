@@ -9,12 +9,12 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 from sklearn.model_selection import KFold, cross_validate
 
-def main_knn(training, trainingLabels, test, testLabels, k, dist_func):
+def main_knn(training, trainingLabels, test, testLabels, k, dist_func, w):
 
     print("--- Applying KNN using scikit-learn ---")
 
     # Create KNN classifier with k and distance function
-    knn = KNeighborsClassifier(n_neighbors = k, metric = dist_func)
+    knn = KNeighborsClassifier(n_neighbors = k, metric = dist_func, weights = w)
 
     # Train model with training data and labels
     print("Training KNN...")
@@ -38,7 +38,7 @@ def main_knn(training, trainingLabels, test, testLabels, k, dist_func):
     roc_auc = roc_auc_score(testLabels, predictions)
 
     # Print metrics
-    print(f"--- KNN Metrics (k = {k} | {dist_func}) ---")
+    print(f"--- KNN Metrics (k = {k} | {dist_func} | Weights = {w}) ---")
     print(f"Model accuracy: {accuracy}")
     print(f"Model precision: {precision}")
     print(f"Model recall: {recall}")
