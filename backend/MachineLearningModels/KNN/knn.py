@@ -5,11 +5,12 @@ Ricardo Calvo Pérez - A01028889
 
 KNN (K Nearest Neighbors) Algorithm
 """
+import joblib
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 from sklearn.model_selection import KFold, cross_validate
 
-def main_knn(training, trainingLabels, test, testLabels, k, dist_func, w):
+def main_knn(training, trainingLabels, test, testLabels, k, dist_func, w, save = None):
 
     print("--- Applying KNN using scikit-learn ---")
 
@@ -44,3 +45,8 @@ def main_knn(training, trainingLabels, test, testLabels, k, dist_func, w):
     print(f"Model recall: {recall}")
     print(f"Model F1 score: {f1}")
     print(f"Model ROC / AUC: {roc_auc}")
+    if save:
+            joblib.dump(knn, save)
+            print(f"Model saved to {save}")
+
+    return knn

@@ -5,11 +5,12 @@ Ricardo Calvo Pérez - A01028889
 
 Logistic Regression Algorithm
 """
+import joblib
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 from sklearn.model_selection import KFold, cross_validate
 
-def main_logistic(training, trainingLabels, test, testLabels, p, lambda_):
+def main_logistic(training, trainingLabels, test, testLabels, p, lambda_, save = None):
 
     print("--- Applying Logistic Regression using scikit-learn ---")
 
@@ -50,3 +51,9 @@ def main_logistic(training, trainingLabels, test, testLabels, p, lambda_):
     print(f"Model recall: {recall}")
     print(f"Model F1 score: {f1}")
     print(f"Model ROC / AUC: {roc_auc}")
+
+    if save:
+            joblib.dump(logistic, save)
+            print(f"Model saved to {save}")
+
+    return logistic

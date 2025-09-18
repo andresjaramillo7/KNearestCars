@@ -18,14 +18,17 @@ print("\n============================== KNN ==============================")
 k = 4
 dist_func = 'cosine'
 w = "uniform"
-main_knn(training, trainingLabels, test, testLabels, k, dist_func, w)
+save_path = "artifacts/knn_model.joblib"
+main_knn(training, trainingLabels, test, testLabels, k, dist_func, w, save=save_path)
 
 print("\n============================== Logistic Regression ==============================")
 # Run Logistic Regression Model
 p = 'l2'
 lambda_ = 1
-main_logistic(training, trainingLabels, test, testLabels, p, lambda_)
+save_path = "artifacts/logreg_model.joblib"
+main_logistic(training, trainingLabels, test, testLabels, p, lambda_, save=save_path)
 
 print("\n============================== Naive Bayes ==============================")
 # Run Naive Bayes Model
-main_naive_bayes(training, trainingLabels, test, testLabels)
+save_path = "artifacts/nb_model.joblib"
+main_naive_bayes(training, trainingLabels, test, testLabels, save=save_path)
