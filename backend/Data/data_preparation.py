@@ -34,15 +34,15 @@ def load_dataset(path):
 
     # One-hot encoding
     cat_cols = ["Hora del día en que jugaste", "Tipo de juego", "Jugaste con amigos o solo"]
-    df = pd.get_dummies(df, columns=cat_cols, drop_first=False)
+    df = pd.get_dummies(df, columns = cat_cols, drop_first = False)
 
     # 'y' y 'X'
     y = df["Ganaste o Perdiste la partida"].map({"Gané": 1, "Perdí": 0}).astype(int)
-    X = df.drop(columns=["Ganaste o Perdiste la partida"])
+    X = df.drop(columns = ["Ganaste o Perdiste la partida"])
 
     # Split 80/20
     training, test, trainingLabels, testLabels = train_test_split(
-        X, y, test_size=0.20, stratify=y, random_state=42
+        X, y, test_size = 0.20, stratify = y, random_state = 42
     )
 
     return training, trainingLabels, test, testLabels

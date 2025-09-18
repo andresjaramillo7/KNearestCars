@@ -11,11 +11,13 @@ from MachineLearningModels.LogisticRegresion.logistic_regresion import main_logi
 from MachineLearningModels.NaiveBayes.naive_bayes import main_naive_bayes
 
 from Data.data_preparation import load_dataset
+training, trainingLabels, test, testLabels = load_dataset("Data/WinLoseDataset.csv")
 
 print("\n============================== KNN ==============================")
 # Llamar modelo KNN
-k = 5
-main_knn(training, trainingLabels, test, testLabels, k)
+k = 31
+dist_func = 'manhattan'
+main_knn(training, trainingLabels, test, testLabels, k, dist_func)
 
 print("\n============================== Regresión Logística ==============================")
 # Llamar modelo Regresión Logística
