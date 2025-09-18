@@ -1,4 +1,4 @@
-# KNearestCars
+# WinLosePredictor
 
 Final submission for the Advanced Artificial Intelligence for data science I / Data analytics and artificial intelligence tools course.
 
@@ -6,4 +6,6 @@ Final submission for the Advanced Artificial Intelligence for data science I / D
 - Pedro Mauri Mtz - A01029143
 - Ricardo Calvo Pérez - A01028889
 
-Implementation of KNN machine learning module to propose the ideal car option to the user having to consideration the user's caracteristics.
+Implementation of the following machine learning algorithms models: KNN (K nearest neighbours), Logistical Regression & Naive Bayes.
+
+In order to determinate, if a player's would win or lose on a videogame session, having to consideration the players's and game present caracteristics.
