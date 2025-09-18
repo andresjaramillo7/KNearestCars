@@ -6,7 +6,7 @@ Ricardo Calvo Pérez - A01028889
 KNN (K Nearest Neighbors) Algorithm
 """
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 from sklearn.model_selection import KFold, cross_validate
 
 def main_knn(training, trainingLabels, test, testLabels, k, dist_func):
@@ -35,10 +35,12 @@ def main_knn(training, trainingLabels, test, testLabels, k, dist_func):
     precision = precision_score(testLabels, predictions, pos_label = positive_label)
     recall = recall_score(testLabels, predictions, pos_label = positive_label)
     f1 = f1_score(testLabels, predictions, pos_label = positive_label)
+    roc_auc = roc_auc_score(testLabels, predictions)
 
     # Print metrics
-    print(f"--- KNN (k = {k}) Metrics ---")
+    print(f"--- KNN Metrics (k = {k} | {dist_func}) ---")
     print(f"Model accuracy: {accuracy}")
     print(f"Model precision: {precision}")
     print(f"Model recall: {recall}")
     print(f"Model F1 score: {f1}")
+    print(f"Model ROC / AUC: {roc_auc}")
