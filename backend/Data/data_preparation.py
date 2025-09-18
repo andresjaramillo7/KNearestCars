@@ -3,7 +3,7 @@ Andrés Jaramillo Barón - A01029079
 Pedro Mauri Mtz - A01029143
 Ricardo Calvo Pérez - A01028889
 
-Dataset preparation
+Data-Set Preparation
 """
 import pandas as pd
 from sklearn.model_selection import train_test_split
