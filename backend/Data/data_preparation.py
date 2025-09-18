@@ -8,7 +8,6 @@ Data-Set Preparation
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-
 def load_dataset(path: str):
     """
     Load and preprocess the dataset from a CSV file.
@@ -36,19 +35,19 @@ def load_dataset(path: str):
         "3 - 4 horas": 3,
         "4 - 5 + horas": 4,
     }
-    df_clean["Hours played before match"] = (
+    df_clean["Horas jugadas antes de la partida"] = (
         df_clean["Horas jugadas antes de la partida"].map(HOURS_MAP)
     )
 
-    # 3. Group less frequent game types into "Others"
-    df_clean["Game type"] = df_clean["Tipo de juego"].replace(
-        {"Shooter": "Others", "Estrategia": "Others", "Deportes": "Others"}
+    # 3. Group less frequent game types into "Otros"
+    df_clean["Tipo de juego"] = df_clean["Tipo de juego"].replace(
+        {"Shooter": "Otros", "Estrategia": "Otros", "Deportes": "Otros"}
     )
 
     # 4. Apply one-hot encoding to categorical columns
     categorical_cols = [
         "Hora del día en que jugaste",
-        "Game type",
+        "Tipo de juego",
         "Jugaste con amigos o solo",
     ]
     df_clean = pd.get_dummies(df_clean, columns=categorical_cols, drop_first=False)
@@ -56,7 +55,7 @@ def load_dataset(path: str):
     # 5. Define features (X) and labels (y)
     # Map labels: "Gané" → 1, "Perdí" → 0
     y = df_clean["Ganaste o Perdiste la partida"].map({"Gané": 1, "Perdí": 0}).astype(int)
-    X = df_clean.drop(columns=["Ganaste o Perdiste la partida", "Horas jugadas antes de la partida", "Tipo de juego"])
+    X = df_clean.drop(columns=["Ganaste o Perdiste la partida"])
 
     # 6. Split dataset into training and test sets (80/20 split, stratified by label distribution)
     training, test, trainingLabels, testLabels = train_test_split(
