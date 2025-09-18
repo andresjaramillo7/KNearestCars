@@ -15,7 +15,7 @@ training, trainingLabels, test, testLabels = load_dataset("Data/WinLoseDataset.c
 
 print("\n============================== KNN ==============================")
 # Run KNN Model
-k = 4
+k = 3
 dist_func = 'cosine'
 w = "uniform"
 main_knn(training, trainingLabels, test, testLabels, k, dist_func, w)
