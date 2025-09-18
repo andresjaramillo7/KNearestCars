@@ -7,13 +7,14 @@ Algoritmo Regresión Logística
 """
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.model_selection import KFold, cross_validate
 
 def main_logistic(training, trainingLabels, test, testLabels):
 
     print("--- Aplicando Regresión Logística usando scikit-learn ---")
 
     # Crear clasificador de Regresión Logística
-    logistic = LogisticRegression()
+    logistic = LogisticRegression(penalty = 'l2', C = 1)
 
     # Entrenar modelo con data y etiquetas de entrenamiento
     print("Entrenando Regresión Logística...")
@@ -27,10 +28,9 @@ def main_logistic(training, trainingLabels, test, testLabels):
     # for i in range(len(predictions)):
     #     print(f"Predicted: {str(predictions[i])} Real Value: {testLabels[i]}")
 
-    # Definir etiqueta 'positiva' - Asumiendo que 'Present\r' es la clase 'positiva'
-    positive_label = 'Present\r'
-
-    # Evaluar 'Accuracy' del modelo
+    # Definir etiqueta 'positiva' - Asumiendo que 'Gané\r' es la clase 'positiva'
+    positive_label = 1
+    # Evaluar métricas de rendimiento del modelo
     accuracy = accuracy_score(testLabels, predictions)
     precision = precision_score(testLabels, predictions, pos_label = positive_label)
     recall = recall_score(testLabels, predictions, pos_label = positive_label)
