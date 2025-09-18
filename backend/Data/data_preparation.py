@@ -63,4 +63,4 @@ def load_dataset(path: str):
         X, y, test_size=0.20, stratify=y, random_state=42
     )
 
-    return training, test, trainingLabels, testLabels
+    return training, trainingLabels, test, testLabels

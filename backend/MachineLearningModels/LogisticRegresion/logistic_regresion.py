@@ -43,4 +43,4 @@ def main_logistic(training, trainingLabels, test, testLabels, p, lambda_):
     print(f"Model precision: {precision}")
     print(f"Model recall: {recall}")
     print(f"Model F1 score: {f1}")
-    print(f"Model ROC AUC: {roc_auc}")
+    print(f"Model ROC / AUC: {roc_auc}")
