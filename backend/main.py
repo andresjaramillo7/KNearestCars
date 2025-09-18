@@ -11,8 +11,7 @@ from MachineLearningModels.LogisticRegresion.logistic_regresion import main_logi
 from MachineLearningModels.NaiveBayes.naive_bayes import main_naive_bayes
 # Import Data-Set
 from Data.data_preparation import load_dataset
-training, trainingLabels, test, testLabels = load_dataset(
-    "backend/Data/WinLoseDataset.csv")
+training, trainingLabels, test, testLabels = load_dataset("backend/Data/WinLoseDataset.csv")
 
 print("\n============================== KNN ==============================")
 # Run KNN Model
