@@ -37,8 +37,14 @@ def main_logistic(training, trainingLabels, test, testLabels, p, lambda_):
     f1 = f1_score(testLabels, predictions, pos_label = positive_label)
     roc_auc = roc_auc_score(testLabels, predictions)
 
+    # Penalty Conversion
+    if p == 'l1':
+        penalty = 'Lasso (L1)'
+    elif p == 'l2':
+        penalty = 'Ridge (L2)'
+    
     # Print metrics
-    print("--- Logistic Regression Metrics ---")
+    print(f"--- Logistic Regression Metrics (lambda = {lambda_}) | {penalty} ---")
     print(f"Model accuracy: {accuracy}")
     print(f"Model precision: {precision}")
     print(f"Model recall: {recall}")

@@ -38,7 +38,7 @@ def main_knn(training, trainingLabels, test, testLabels, k, dist_func):
     roc_auc = roc_auc_score(testLabels, predictions)
 
     # Print metrics
-    print(f"--- KNN (k = {k}) Metrics ---")
+    print(f"--- KNN Metrics (k = {k} | {dist_func}) ---")
     print(f"Model accuracy: {accuracy}")
     print(f"Model precision: {precision}")
     print(f"Model recall: {recall}")

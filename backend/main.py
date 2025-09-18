@@ -15,8 +15,8 @@ training, trainingLabels, test, testLabels = load_dataset("Data/WinLoseDataset.c
 
 print("\n============================== KNN ==============================")
 # Run KNN Model
-k = 31
-dist_func = 'manhattan'
+k = 17
+dist_func = 'cosine'
 main_knn(training, trainingLabels, test, testLabels, k, dist_func)
 
 print("\n============================== Logistic Regression ==============================")
