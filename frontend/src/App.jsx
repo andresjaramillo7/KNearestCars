@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { io } from "socket.io-client";
+
 import './App.css'
 
 function App() {
+
   const initial_vals = {
     prevHours: "",
     hourWhenPlayed: "",
@@ -56,14 +59,44 @@ function App() {
     ],
   };
 
+  const callOnce = (url, event, payload, timeout=5000) =>
+  new Promise((resolve, reject) => {
+    const socket = io(url, { autoConnect: false, transports: ["websocket"] });
+    const t = setTimeout(() => { socket.disconnect(); reject(new Error("timeout")); }, timeout);
+    socket.on("connect_error", err => { clearTimeout(t); socket.disconnect(); reject(err); });
+    socket.connect();
+    socket.emit(event, payload, (ack) => {
+      clearTimeout(t);
+      resolve(ack);
+      socket.disconnect();
+    });
+  });
+
   const [form, setForm] = useState(initial_vals);
+  const [result, setResult] = useState(null);
+
+    const resetAll = () => {
+    setResult(null);
+    setForm(initial_vals);
+  };
 
   const setRadio = (name, value) => setForm(f => ({ ...f, [name]: value }));
-  const onSubmit = (e) => { e.preventDefault(); console.log(form); };
+  const onSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await callOnce("http://localhost:8000", "process_form", form);
+    if (!res?.ok) return alert("error del servidor");
+    setResult(res); // { ok, score, label }
+  } catch (e) {
+    alert("error de socket");
+  }
+};
+
 
 
   return (
     <div className="shell">
+      {!result ? (
       <form onSubmit={onSubmit} className="form">
         <section className="card header">
           <h1 className="title">Predice si ganarás esta sesión</h1>
@@ -170,6 +203,27 @@ function App() {
           <button type="button" className="btn" onClick={() => setForm(initial_vals)}>Limpiar</button>
         </div>
       </form>
+
+        ) : (
+
+      <section className="card results">
+
+          <h2>K Nearest Neighbors</h2>
+          <div className="kpi">Probabilidad de ganar: {result.knnp1}% | Probabilidad de perder: {result.knnp0}%</div>
+
+          <h2>Regresión Logística</h2>
+          <div className="kpi">Probabilidad de ganar: {result.logregp1}% | Probabilidad de perder: {result.logregp0}%</div>
+
+          <h2>Naive Bayes</h2>
+          <div className="kpi">Probabilidad de ganar: {result.nbp1}% | Probabilidad de perder: {result.nbp0}%</div>
+
+          <div className="actions" style={{ marginTop: 12 }}>
+            <button type="button" className="btn primary" onClick={resetAll}>Nueva predicción</button>
+          </div>
+        </section>
+
+    )}
+
     </div>
   );
 
