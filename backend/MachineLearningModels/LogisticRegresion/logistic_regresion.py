@@ -9,12 +9,12 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import KFold, cross_validate
 
-def main_logistic(training, trainingLabels, test, testLabels):
+def main_logistic(training, trainingLabels, test, testLabels, p, lambda_):
 
     print("--- Aplicando Regresión Logística usando scikit-learn ---")
 
     # Crear clasificador de Regresión Logística
-    logistic = LogisticRegression(penalty = 'l2', C = 1)
+    logistic = LogisticRegression(penalty = p, C = lambda_)
 
     # Entrenar modelo con data y etiquetas de entrenamiento
     print("Entrenando Regresión Logística...")
