@@ -20,7 +20,7 @@ function App() {
       { value: "1 - 2 horas", label: "1 - 2 horas" },
       { value: "2 - 3 horas", label: "2 - 3 horas" },
       { value: "3 - 4 horas", label: "3 - 4 horas" },
-      { value: "4 - 5+ horas", label: "4 - 5+ horas" },
+      { value: "4 - 5 + horas", label: "4 - 5 + horas" },
     ],
     hourWhenPlayed: [
       { value: "Mañana (6 am - 12 pm)", label: "Mañana (6 am - 12 pm)" },
@@ -46,6 +46,7 @@ function App() {
       { value: "5", label: "Me estoy durmiendo" },
     ],
     consecutiveWins: [
+      { value: "0", label: "0" },
       { value: "1", label: "1" },
       { value: "2", label: "2" },
       { value: "3", label: "3" },

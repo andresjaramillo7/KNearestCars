@@ -1,6 +1,8 @@
 # test.py
 import socketio
 import sys
+from service import predict_all
+
 sys.stdout.reconfigure(
     encoding="utf-8", line_buffering=True, write_through=True)
 
@@ -32,8 +34,8 @@ async def process_form(sid, data: dict):
 
     # res is going to be our results from our tests
     # based on KNN, Logistic regression and Naive bayes
-    res = {'logreg': {'p_1': 63.27, 'p_0': 36.73}, 'knn': {
-        'p_1': 63.27, 'p_0': 36.73}, 'nb': {'p_1': 63.27, 'p_0': 36.73}}
+
+    res = predict_all(X)
 
     return flatten_scores(res)
 
