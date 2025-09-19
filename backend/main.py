@@ -15,22 +15,20 @@ training, trainingLabels, test, testLabels = load_dataset("backend/Data/WinLoseD
 
 print("\n============================== KNN ==============================")
 # Run KNN Model
-k = 3
+k = 17
 dist_func = 'cosine'
 w = "uniform"
 save_path = "backend/artifacts/knn_model.joblib"
-main_knn(training, trainingLabels, test, testLabels,
-         k, dist_func, w, save=save_path)
+main_knn(training, trainingLabels, test, testLabels, k, dist_func, w, save = save_path)
 
 print("\n============================== Logistic Regression ==============================")
 # Run Logistic Regression Model
 p = 'l2'
 lambda_ = 1
 save_path = "backend/artifacts/logreg_model.joblib"
-main_logistic(training, trainingLabels, test,
-              testLabels, p, lambda_, save=save_path)
+main_logistic(training, trainingLabels, test, testLabels, p, lambda_, save = save_path)
 
 print("\n============================== Naive Bayes ==============================")
 # Run Naive Bayes Model
 save_path = "backend/artifacts/nb_model.joblib"
-main_naive_bayes(training, trainingLabels, test, testLabels, save=save_path)
+main_naive_bayes(training, trainingLabels, test, testLabels, save = save_path)
